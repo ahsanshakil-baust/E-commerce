@@ -5,8 +5,14 @@ import { products } from "@/utils/produceData";
 import { Iproduct } from "@/components/ProductCard";
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebook, FaRegStar, FaStar } from "react-icons/fa";
-import { CiHeart, CiShoppingCart } from "react-icons/ci";
+import { FaRegStar, FaStar } from "react-icons/fa";
+import {
+    CiFacebook,
+    CiHeart,
+    CiLinkedin,
+    CiShoppingCart,
+    CiTwitter,
+} from "react-icons/ci";
 import { IoIosGitCompare } from "react-icons/io";
 
 const DetailPage = () => {
@@ -119,7 +125,9 @@ const DetailPage = () => {
                         <div className="flex gap-1 items-center pt-4">
                             SHARE:{" "}
                             <div className="flex gap-2 items-center text-[18px]">
-                                <FaFacebook />
+                                <CiFacebook />
+                                <CiLinkedin />
+                                <CiTwitter />
                             </div>
                         </div>
                     </div>

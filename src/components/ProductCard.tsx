@@ -1,3 +1,5 @@
+import { addToCart } from "@/redux/features/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { CiHeart, CiShoppingCart } from "react-icons/ci";
@@ -14,6 +16,7 @@ export interface Iproduct {
 
 const ProductCard = ({ id, img, name, price, sale }: Iproduct) => {
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
     const getRating = () => {
         const randomNumber = (min: number, max: number) => {
@@ -88,6 +91,18 @@ const ProductCard = ({ id, img, name, price, sale }: Iproduct) => {
                 return <div></div>;
         }
     };
+
+    const addToProductCart = (e: React.FormEvent) => {
+        e.stopPropagation();
+        const payload = {
+            id,
+            name,
+            img,
+            price,
+            quantity: 1,
+        };
+        dispatch(addToCart(payload));
+    };
     return (
         <div
             className="group cursor-pointer"
@@ -114,7 +129,10 @@ const ProductCard = ({ id, img, name, price, sale }: Iproduct) => {
                             <CiHeart />
                         </div>
 
-                        <div className="bg-white w-[50px] text-[26px] grid place-items-center">
+                        <div
+                            className="bg-white w-[50px] text-[26px] grid place-items-center"
+                            onClick={addToProductCart}
+                        >
                             <CiShoppingCart />
                         </div>
                     </div>

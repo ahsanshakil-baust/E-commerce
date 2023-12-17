@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { CiHeart, CiShoppingCart } from "react-icons/ci";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
@@ -7,11 +8,13 @@ export interface Iproduct {
     img: string;
     name: string;
     price: number;
-    // category: string[];
+    category?: string[];
     sale: boolean | undefined;
 }
 
 const ProductCard = ({ id, img, name, price, sale }: Iproduct) => {
+    const router = useRouter();
+
     const getRating = () => {
         const randomNumber = (min: number, max: number) => {
             return Math.ceil(Math.random() * (max - min) + min);
@@ -86,7 +89,10 @@ const ProductCard = ({ id, img, name, price, sale }: Iproduct) => {
         }
     };
     return (
-        <div className="group cursor-pointer">
+        <div
+            className="group cursor-pointer"
+            onClick={() => router.push(`/details/${id}`)}
+        >
             <div className="relative">
                 <Image
                     className="w-full h-[200px] xl:h-[250px] 2xl:h-[300px]"
